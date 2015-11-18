@@ -21,10 +21,10 @@ if (Meteor.isClient) {
   Template.register.events({
     'submit form': function(event, template){
       event.preventDefault();
-      var emailVar = template.find('#email').value;
+      var userVar = template.find('#username').value;
       var passwordVar = template.find('#password').value;
       Accounts.createUser({
-        email: emailVar,
+        username: userVar,
         password: passwordVar
       });
     }
@@ -33,9 +33,9 @@ if (Meteor.isClient) {
   Template.login.events({
     'submit form': function(event, template){
       event.preventDefault();
-      var emailVar = template.find('#login-email').value;
+      var userVar = template.find('#login-user').value;
       var passwordVar = template.find('#login-password').value;
-      Meteor.loginWithPassword(emailVar,passwordVar);
+      Meteor.loginWithPassword(userVar,passwordVar);
     }
   });
 
