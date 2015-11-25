@@ -23,11 +23,49 @@
 <!-------REGISTER START-------------->
 <template name="register">
   <h2>Register</h2>
-  <form class="register">
+  <form class="register" id="info">
     <p>Username: <input type="text" id="username"></p>
     <p>Password: <input type="password" id="password"></p>
-    <p><input type="submit" value="Register"></p>
+    <p>Confirm Password: <input type="password" id="password2"></p>
+    <button>Submit</button><br><br>
   </form>
+  <div id="passerror" style="display:none"><b>Registration Error:</b> <br>- Password must be 8 to 16 characters long.  <br>- Have at least one lower case character. <br>- Have at least one uppercase character. <br>- Have at least one digit.</div>
+  <div id="usererror" style="display:none"><b>Registration Error:</b> Username cannot be left blank!</div>
+  <div id="confirmerror" style="display:none"><b>Registration Error:</b> Passwords do not match.</div>
+<div id="valid" style="display:none">Thank you for registering!</div>
+
+
+  <script>
+    $("button").click(function () {
+      var user_input = document.getElementById('username').value;
+      var pass_input = $("input[id='password']");
+    var the_pass = pass_input.val();
+    var pass_regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,18}/;;
+    var pass_match = pass_regex.exec(the_pass);
+    var pass_con = $("input[id='password2']");
+    var pass_confirm = pass_con.val();
+
+    if ( !user_input.match(/\S/) || pass_match == null ) {
+      $("#usererror").show();
+      $("#passerror").show();
+        console.log("Form Denied")
+      }
+    else if (the_pass != pass_confirm) {
+      $("#usererror").hide();
+      $("#passerror").hide();
+      $("#confirmerror").show();
+      console.log("Form Denied")
+    }
+    else {
+      $("#usererror").hide();
+      $("#passerror").hide();
+      $("#confirmerror").hide();
+      $("#valid").show();
+      //$('#info').submit();
+      console.log("Form Submitted")
+    }
+  })</script>
+
 </template>
 <!-------REGISTER END -------------->
 
@@ -65,24 +103,25 @@
   <h2>Home</h2>
   <div class="container">
     <div class="row">
-      <div class="col-sm-4">
-        <h3>Column 1</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <div class="col-sm-6">
+        <h3>Welcome!!</h3>
+        <p>Hello and Welcome to my final project</p>
+        <p>Everything is still under constructions</p>
       </div>
-      <div class="col-sm-4">
-        <h3>Column 2</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <div class="col-sm-3">
+        <h3>Go to About. . .</h3>
+        <p>See what technology I used to build this page/app</p>
+        <p>What did you you think?</p>
       </div>
-      <div class="col-sm-4">
-        <h3>Column 3</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <div class="col-sm-3">
+        <h3>Go to Tasks. . .</h3>
+        <p>Use the handy to-do list with other users.</p>
+        <p>Don't forget to register a username so only YOU can edit your private tasks!</p>
       </div>
     </div>
 
     <p><b>BOTTOM:</b></p>
+    <p>I might add pictures or events here~ who knows...</p>
 
   </div>
 
@@ -107,7 +146,17 @@
 
 <!---------NAVIGATION------------>
 <template name="navigation">
-  <ul class="nav nav-tabs">
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="myNavbar">
+  <ul class="nav navbar-nav">
     <li><a href="{{pathFor route='home'}}">Home</a></li>
     <li><a href="{{pathFor route='about'}}">About</a></li>
     <li><a href="{{pathFor route='todos'}}">Tasks</a></li>
@@ -117,13 +166,18 @@
     <li><a href="{{pathFor route='login'}}">Login</a></li>
     {{/if}}
   </ul>
+      </div>
+</div>
 </template>
 <!---------NAVAGATION END-------->
 
 
 <!-------ABOUT START-------------->
 <template name="about">
+
+
   <h2>About</h2>
+  <div class="container">
   <b>Meteor:</b>
   <br>-accounts-ui
   <br>-accounts-password
@@ -132,6 +186,7 @@
   <b>Boostrap:</b>
 <br><br>
   <b>CSS:</b>
+    </div>
 </template>
 <!-------ABOUTEND -------------->
 
