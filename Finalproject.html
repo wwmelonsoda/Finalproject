@@ -22,15 +22,17 @@
 
 <!-------REGISTER START-------------->
 <template name="register">
-  <h2>Register</h2>
+
+  <div class="container">
+  <h3>Register <img src="http://www.bonappetit.com/wp-content/uploads/2015/07/watermelon-620x416.jpg" width="50"></h3>
   <form class="register" id="info">
     <p>Username: <input type="text" id="username"></p>
     <p>Password: <input type="password" id="password"></p>
     <p>Confirm Password: <input type="password" id="password2"></p>
     <button>Submit</button><br><br>
   </form>
+    <div id="usererror" style="display:none"><b>Registration Error:</b><br>-Username cannot be left blank!</div>
   <div id="passerror" style="display:none"><b>Registration Error:</b> <br>- Password must be 8 to 16 characters long.  <br>- Have at least one lower case character. <br>- Have at least one uppercase character. <br>- Have at least one digit.</div>
-  <div id="usererror" style="display:none"><b>Registration Error:</b> Username cannot be left blank!</div>
   <div id="confirmerror" style="display:none"><b>Registration Error:</b> Passwords do not match.</div>
 <div id="valid" style="display:none">Thank you for registering!</div>
 
@@ -45,15 +47,28 @@
     var pass_con = $("input[id='password2']");
     var pass_confirm = pass_con.val();
 
-    if ( !user_input.match(/\S/) || pass_match == null ) {
-      $("#usererror").show();
-      $("#passerror").show();
+       if ( user_input == "") {
+        $("#passerror").hide();
+        $("#usererror").show();
+         $("#confirmerror").hide();
+        event.preventDefault();
         console.log("Form Denied")
       }
+
+      else if ( pass_match == null) {
+        $("#passerror").show();
+        $("#usererror").hide();
+         $("#confirmerror").hide();
+
+        event.preventDefault();
+        console.log("Form Denied")
+      }
+
     else if (the_pass != pass_confirm) {
       $("#usererror").hide();
       $("#passerror").hide();
       $("#confirmerror").show();
+      event.preventDefault();
       console.log("Form Denied")
     }
     else {
@@ -61,10 +76,11 @@
       $("#passerror").hide();
       $("#confirmerror").hide();
       $("#valid").show();
-      //$('#info').submit();
+      $('#info').submit();
       console.log("Form Submitted")
     }
   })</script>
+  </div>
 
 </template>
 <!-------REGISTER END -------------->
@@ -72,7 +88,8 @@
 <!-------LOG IN START-------------->
 <template name="login">
 
-  <h2>Log In</h2>
+  <div class="container">
+  <h3>Log In <img src="http://empoweredfit.com/wp-content/uploads/2015/06/watermelon.jpg" width="50"></h3>
 
   {{#if currentUser}}
      {{> dashboard}}
@@ -87,6 +104,8 @@
     <a href="{{pathFor route='register'}}">Register</a>
   {{/if}}
 
+  </div>
+
 </template>
 <!-------LOG IN END -------------->
 
@@ -100,19 +119,20 @@
 <!-------HOME START---------------->
 <template name="home">
 
-  <h2>Home</h2>
+
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
         <h3>Welcome!!</h3>
         <p>Hello and Welcome to my final project</p>
-        <p>Everything is still under constructions</p>
+        <p>Are you craving watermelon yet?</p>
+        <img src="https://41.media.tumblr.com/2e03a232a8aa1f5a3cc476e71e1683f5/tumblr_n5h9olpy1E1tsamnqo1_500.png" width="100%">
       </div>
       <div class="col-sm-3">
         <h3>Go to About. . .</h3>
         <p>See what technology I used to build this page/app</p>
         <p>What did you you think?</p>
-      </div>
+    </div>
       <div class="col-sm-3">
         <h3>Go to Tasks. . .</h3>
         <p>Use the handy to-do list with other users.</p>
@@ -120,8 +140,7 @@
       </div>
     </div>
 
-    <p><b>BOTTOM:</b></p>
-    <p>I might add pictures or events here~ who knows...</p>
+
 
   </div>
 
@@ -148,15 +167,22 @@
 <template name="navigation">
     <div class="navbar navbar-default">
       <div class="container-fluid">
+        <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+          <a class="navbar-brand" href="#">
+            <img alt="Brand" src="http://www.cuiwatermelondrink.com/watermelon%20icon%20copy.jpg" width="50">
+          </a>
     </div>
+
 
     <div class="collapse navbar-collapse" id="myNavbar">
   <ul class="nav navbar-nav">
+
+
     <li><a href="{{pathFor route='home'}}">Home</a></li>
     <li><a href="{{pathFor route='about'}}">About</a></li>
     <li><a href="{{pathFor route='todos'}}">Tasks</a></li>
@@ -167,7 +193,7 @@
     {{/if}}
   </ul>
       </div>
-</div>
+</div></div>
 </template>
 <!---------NAVAGATION END-------->
 
@@ -176,25 +202,55 @@
 <template name="about">
 
 
-  <h2>About</h2>
   <div class="container">
-  <b>Meteor:</b>
-  <br>-accounts-ui
-  <br>-accounts-password
-  <br>-iron:router
-<br><br>
-  <b>Boostrap:</b>
-<br><br>
-  <b>CSS:</b>
+    <h3>About</h3>
+    This project was created for ICS 415 Fall 2015 as the final presentation under the direction by Professor Cam Moore.
+    We learned about several different web technologies and now have the chance to make our own project using what we learned.<br>
+    <br>
+    Technologies I used to create this site include:
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Meteor:</h3>
+        -accounts-ui<br>
+        -accounts-password<br>
+        -iron:router<br>
+        -MongoDB<br>
+
+        <h3>Bootstrap:</h3>
+        -Header<br>
+        -Navbar<br>
+        -Content<br>
+
+
+      </div>
+      <div class="col-sm-6">
+        <h3>CSS:</h3>
+        -Theme "Fresh Watermelon"<br>
+        from http://hex-color.com
+
+        <img src="http://cliparts.co/cliparts/5cR/KkB/5cRKkB9Ki.png" width=100%>
+      </div>
+      <h3>Got Feedback?</h3>
+      Contact Kristy ww<br>
+      via <a href="mailto:kristyaw@hawaii.edu">E-mail</a>
     </div>
+
+
+
+
+
+  </div>
 </template>
 <!-------ABOUTEND -------------->
 
 <!-------ABOUT START-------------->
 <template name="todos">
-<h2>Tasks</h2>
+
+
   <div class="container">
-      <h1>Todo List ({{incompleteCount}})</h1>
+
+      <h1>To-do List ({{incompleteCount}})</h1>
 
       <label class="hide-completed">
         <input type="checkbox" checked="{{hideCompleted}}" />
@@ -203,9 +259,13 @@
 
 
       {{#if currentUser}}
+    <marquee behavior="scroll" direction="right">
+      <img src="https://49.media.tumblr.com/tumblr_lormyuwgiz1qefok0o1_400.gif" height="50"></marquee>
       <form class="new-task">
         <input type="text" name="text" placeholder="Type to add new tasks" />
       </form>
+    {{else}}
+    <p style="color:red; letter-spacing:2px;">Please login to add tasks!</p>
       {{/if}}
 
     <ul>
@@ -234,4 +294,6 @@
 
     <span class="text"><strong>{{username}}</strong> - {{text}}</span>
   </li>
+
+
 </template>

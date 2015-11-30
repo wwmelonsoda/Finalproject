@@ -2,7 +2,7 @@
 body {
     font-family: sans-serif;
     background-color: #315481;
-    background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+    background-image: linear-gradient(to bottom, #fd5757, #ff7676, #c8e69e, #85ec57, #47d278 100%);
     background-attachment: fixed;
 
     position: absolute;
@@ -17,6 +17,14 @@ body {
     font-size: 14px;
 }
 
+.nav {
+    font-family: Impact;
+}
+
+.navbar-brand {
+    margin-top: -15px;
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -25,8 +33,8 @@ body {
 }
 
 header {
-    background: #d2edf4;
-    background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+    background: #be0080;
+    background-image: linear-gradient(to bottom, #fd5757, #ff7676, #c8e69e 100%);
     padding: 20px 15px 15px 15px;
     position: relative;
 }
@@ -41,6 +49,11 @@ h1 {
     margin-bottom: 10px;
     display: inline-block;
     margin-right: 1em;
+}
+
+h2 {
+    font-family: Impact;
+    letter-spacing: 3px;
 }
 
 form {
